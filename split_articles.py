@@ -11,8 +11,7 @@ with open(NEWS_DATA, 'r', encoding='utf-8', errors='ignore') as fp:
     inbody = False
     paragraph = ''          #get the info of @body
     article_count = 0
-    for line in fp:
-
+    for line in fp:                         #lines in the file
         if inbody :
             if line.startswith('@') :       #the end of the body
                 inbody = False

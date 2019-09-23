@@ -13,30 +13,24 @@ start = time.clock()
 
 with open(break_data, 'r', encoding='utf-8', errors='replace') as fp:
     file_count = 0
-    for line in fp:
+    for line in fp:     #前一個方法處理完所有新聞文章
         
         sentence = re.split(r'[\?\!\！\？\。\;\；\|\｜\，\：][\」\》\）\)]?', line)
         sentence_length = len(sentence)
 
+        #處理斷出來的句子
         for s in sentence:
             
-            s = ''.join(s.split(' '))
-            s = ''.join(s.split('　'))
-            s = ''.join(s.split('★'))
-            s = ''.join(s.split('▲'))
-            s = ''.join(s.split('►'))
-            s = ''.join(s.split('▼'))
-            s = ''.join(s.split('>>>'))
-            s = ''.join(s.split('\n'))
-            s.replace('', '')
-            s.replace('▲', '')
-            s.replace('►', '')
-            if s.startswith('20') or s.startswith('>') or s.startswith(',') or s is '' or s is '\n' or s is '、' or\
-               s.startswith(' ') or s.startswith('?') or s.startswith('!') or s.startswith('|') or\
-               s.startswith('？') or s.startswith('！') or s.startswith('｜') or s.startswith('。') or\
-               s.startswith('；') or s.startswith(';') :
+            #處理特殊字元
+            s = ''.join(re.split('[\ \　\★\▲\►\▼\●\t\n\x00\x01\x08\x1c\x0b]', s))
+            
+            #不符合的句子都略過
+            if s.startswith('20') or s.startswith('>') or s.startswith('\"') or s.startswith(',') or \
+               s is '' or s is '\n' or len(s) <= 3:
                 continue
 
+            # sentences 為 dictionary 型態
+            # 若沒有符合的 key 就加進 dictionary
             if sentences.get(s) is None:
                 sentences[s] = 1
             else:
@@ -80,7 +74,7 @@ with open('./news_data/sentences.rec', 'w', encoding='utf-8') as fp:
         fp.write('\n')
 
 
-with open('split_articles.info', 'w') as fp:
+with open('split_sentences.info', 'w') as fp:
     fp.write('Total sentences: ' + str(sentence_count) + '\n')
     fp.write('Split time cost: ' + str(split_time_cost) + ' s\n')
     fp.write('Sort time cost: ' + str(sort_time_cost) + ' s\n')
