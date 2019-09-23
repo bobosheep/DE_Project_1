@@ -107,7 +107,7 @@ for line in fp:     #前一個方法處理完所有新聞文章
             sentences[s] += 1
 ```
 
-斷句後的結果:
+斷句結果:
 ```javascript
 Total sentences: 15,148,116
 Split time cost: 129.0651037 s
@@ -122,7 +122,7 @@ Average memory cost per sentence: 44.30179595 bytes
 斷完所有句子後，接著就是進行排序。因為有了每個句子的出現次數，所以我的排序是根據出現次數做排序，以出現次數多到少進行排序。
 排序使用 python 內建函式 sorted()，此函式排序為 stable。
 ```python
-sentences = [ v for v in sorted(sentences.items(), key = lambda x : x[1], reverse=)]
+sentences = [ v for v in sorted(sentences.items(), key = lambda x : x[1], reverse=True)]
 ```
 
 排序出來的前10名如下:
@@ -139,6 +139,7 @@ sentences = [ v for v in sorted(sentences.items(), key = lambda x : x[1], revers
 ('東森新聞網2011年捲土重來', 36416)
 ```
 
+排序結果:
 ```javascript
 Total sentences: 15,148,116
 Sort time cost: 4.7192817 s
