@@ -2,6 +2,8 @@ import re
 import hashlib
 import sys
 import time
+import pickle
+import json
 
 md5 = hashlib.md5()
 break_data = './news_data/processed_data.rec'
@@ -22,7 +24,7 @@ with open(break_data, 'r', encoding='utf-8', errors='replace') as fp:
         for s in sentence:
             
             #處理特殊字元
-            s = ''.join(re.split('[\ \　\★\▲\►\▼\●\t\n\x00\x01\x08\x1c\x0b]', s))
+            s = ''.join(re.split('[\ \　\★\◄\▲\►\▼\●\t\n\x00\x01\x08\x1c\x0b]', s))
             
             #不符合的句子都略過
             if s.startswith('20') or s.startswith('>') or s.startswith('\"') or s.startswith(',') or \
@@ -68,11 +70,21 @@ for item in items:
     if count == 10 :
         break
 
+sentence_array = []
+
 with open('./news_data/sentences.rec', 'w', encoding='utf-8') as fp:
     for sentence_result in sentences:
         fp.write(sentence_result[0] + ': ' + str(sentence_result[1]))
+        sentence_array.append({"name":sentence_result[0], "count": sentence_result[1]})
         fp.write('\n')
 
+sentence_in_json = {"sentences": sentence_array}
+
+with open('./news_data/sentences.bdata', 'wb') as fp:
+    pickle.dump(sentences, fp)
+
+with open('./news_data/sentences.json', 'w') as fp:
+    json.dump(sentence_in_json, fp)
 
 with open('split_sentences.info', 'w') as fp:
     fp.write('Total sentences: ' + str(sentence_count) + '\n')

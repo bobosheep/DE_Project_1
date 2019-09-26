@@ -2,17 +2,21 @@
 根據提供之新聞資料將所有文章內容做斷句，並將其排序、計算句子重複次數，最後以網頁型式呈現，並提供簡單搜尋功能。
 
 ## 系統環境
-*   OS: Win10 64-bit
+    *   OS: Win10 64-bit
 
-*   CPU: i5-8250U 1.6-3.4 GHz
+    *   CPU: i5-8250U 1.6-3.4 GHz
 
-*   RAM: 8GB
+    *   RAM: 8GB
 
-*   News data: 1.88 GB 
+    *   News data: 1.88 GB 
 
-*   Programming language: python
+    *   Programming language: python
 
 ## 系統流程
+
+1.  原資料處理
+2.  斷句方法
+3.  排序
 
 ###  1. 原資料處理
 先把整個原始檔案做過濾，把我們需要的新聞文章內容取出來即可。
@@ -119,8 +123,8 @@ Average memory cost per sentence: 44.30179595 bytes
 
 ### 3. 排序
 
-斷完所有句子後，接著就是進行排序。因為有了每個句子的出現次數，所以我的排序是根據出現次數做排序，以出現次數多到少進行排序。
-排序使用 python 內建函式 sorted()，此函式排序為 stable。
+斷完所有句子後，接著就是進行排序。因為有了每個句子的出現次數，所以我的排序是根據句子的出現次數做排序，以出現次數多到少進行排序。
+排序使用 python 內建函式 sorted()。此函式排序為 stable。
 ```python
 sentences = [ v for v in sorted(sentences.items(), key = lambda x : x[1], reverse=True)]
 ```

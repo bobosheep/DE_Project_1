@@ -15,11 +15,10 @@ with open(NEWS_DATA, 'r', encoding='utf-8', errors='ignore') as fp:
         if inbody :
             if line.startswith('@') :       #the end of the body
                 inbody = False
-                #print('finish')
                 paragraphList += [paragraph]
             paragraph = paragraph + line
 
-        if line.startswith('@body') :
+        if line.startswith('@body') :       #the start of the body
             inbody = True
             paragraph = line.split(':')[1]
             article_count += 1
