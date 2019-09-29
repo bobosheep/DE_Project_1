@@ -83,9 +83,6 @@ sentence_in_json = {"sentences": sentence_array}
 with open('./news_data/sentences.bdata', 'wb') as fp:
     pickle.dump(sentences, fp)
 
-with open('./news_data/sentences.json', 'w') as fp:
-    json.dump(sentence_in_json, fp)
-
 with open('split_sentences.info', 'w') as fp:
     fp.write('Total sentences: ' + str(sentence_count) + '\n')
     fp.write('Split time cost: ' + str(split_time_cost) + ' s\n')
