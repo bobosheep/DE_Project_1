@@ -1,0 +1,21 @@
+
+<div class="container">
+  <h1>  Sentences Search!</h1>
+  <mat-form-field class="search-input">
+    <input type="text" matInput [(ngModel)]="value" (keyup.enter)="searchTerm(value)">
+    <button mat-button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
+      <mat-icon>close</mat-icon>
+    </button>
+    <button mat-button  matSuffix mat-icon-button aria-label="Search" (click)="searchTerm(value)" >
+      <mat-icon>search</mat-icon>
+    </button>
+  </mat-form-field>
+  <p *ngIf="searchResult.search_time "> Search Time: {{ searchResult.search_time }}  Total Result: {{ searchResult.total_results }}</p>
+  <mat-list>
+    <mat-list-item class="sentence-results" *ngFor="let s of sentences; last as last">
+      <h4 mat-line>{{ s.name }}</h4>
+      <p mat-line> {{ s.count }} </p>
+    <mat-divider  [inset]="true" *ngIf="!last"></mat-divider>
+    </mat-list-item>
+  </mat-list>
+</div>

@@ -1,0 +1,51 @@
+<div class='container'>
+  <mat-drawer-container class="example-container" [hasBackdrop]="true">
+
+  <mat-drawer #drawer mode="push">
+    <mat-list>
+      <h3 mat-subheader>See others</h3>
+
+      <mat-list-item class='menu-button'>
+        <mat-icon mat-list-icon>details</mat-icon>
+        <h4 mat-line> Project Description</h4>
+      </mat-list-item>
+
+      <mat-list-item class='menu-button'>
+        <mat-icon mat-list-icon>computer</mat-icon>
+        <h4 mat-line> Performance </h4>
+      </mat-list-item>
+
+      <mat-list-item class='menu-button'>
+        <mat-icon mat-list-icon>menu_book</mat-icon>
+        <h4 mat-line> All sentences </h4>
+      </mat-list-item>
+
+    </mat-list>
+  </mat-drawer>
+
+  <mat-drawer-content>
+  <mat-toolbar color="primary">
+    <button mat-icon-button (click)="drawer.toggle()">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <span>Data Engineering Project</span>
+    <mat-icon>mood</mat-icon>
+  </mat-toolbar>
+    
+  <search-ui></search-ui>
+  <p>&nbsp;</p>
+  <p>&nbsp;</p>
+  <p>&nbsp;</p>
+  <p>&nbsp;</p>
+  <p>&nbsp;</p>
+  <p>&nbsp;</p>
+  <p>&nbsp;</p>
+  <p>&nbsp;</p>
+  <p>&nbsp;</p>
+  <p>&nbsp;</p>
+  <p>&nbsp;</p>
+  <p>&nbsp;</p>
+  <p>&nbsp;</p>
+  </mat-drawer-content>
+  </mat-drawer-container>
+</div>
