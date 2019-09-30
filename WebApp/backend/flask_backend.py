@@ -18,6 +18,7 @@ result_list = []
 def search():
     term = request.args.get('term')
     result_page = request.args.get('page', 1)
+    result_page = int(result_page)
 
     global search_term
     global result_list
@@ -40,8 +41,13 @@ def search():
 
     start = time.clock()
     for s in sentences:
-        if s[0].find(term) >= 0:
-            result_list.append({"name":s[0], "count":s[1]})
+        find_idx = s[0].find(term)
+        if find_idx >= 0:
+            before = s[0][:find_idx]
+            after = s[0][find_idx+len(term):]
+            find_term = s[0][find_idx: find_idx+len(term)]
+            sen = before + '<mark>' + find_term + '</mark>' + after
+            result_list.append({"name":sen, "count":s[1]})
     end = time.clock()
     search_time = end - start
 
@@ -52,7 +58,7 @@ def search():
     return jsonify(return_json)
 
 if __name__ == '__main__':
-    with open('../news_data/sentences.bdata', 'rb') as fp:
+    with open('../../news_data/sentences.bdata', 'rb') as fp:
         sentences = pickle.load(fp)
 
     app.run(debug=True)
