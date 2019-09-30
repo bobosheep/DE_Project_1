@@ -46,3 +46,12 @@ section {
     width: 100%;
     text-align: center;
 }
+
+
+@media only screen and (max-width: 800px) {
+    
+    .sub-container {
+        margin-top: 50%;
+    }
+
+  }

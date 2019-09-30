@@ -1,3 +1,23 @@
-<p>
-  performance works!
-</p>
+<mat-card class="performance" *ngFor="let performance of performances">
+    <mat-card-header>
+      <mat-card-title>{{ performance.title }}</mat-card-title>
+      <mat-card-subtitle>{{ performance.subtitle }}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <mat-accordion>
+        <mat-expansion-panel *ngFor="let p of performance.panels">
+          <mat-expansion-panel-header>
+            <mat-panel-title> {{ p.title }} </mat-panel-title>
+            <mat-panel-description> {{ p.subtitle }}</mat-panel-description>
+          </mat-expansion-panel-header>
+          <mat-list role="list">
+            <mat-list-item role="listitem" *ngFor="let c of p.contents">{{ c }}</mat-list-item>
+          </mat-list>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </mat-card-content>
+    
+  </mat-card>
+  
+  <div class="empty">
+  </div>
