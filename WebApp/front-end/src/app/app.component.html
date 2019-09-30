@@ -3,21 +3,30 @@
 
   <mat-drawer #drawer mode="push">
     <mat-list>
-      <h3 mat-subheader>See others</h3>
-
-      <mat-list-item class='menu-button'>
-        <mat-icon mat-list-icon>details</mat-icon>
-        <h4 mat-line> Project Description</h4>
+      <h3 mat-subheader>Pages</h3>
+      <mat-list-item class='menu-button' routerLink="/home" (click)="drawer.toggle()">
+          <mat-icon mat-list-icon>home</mat-icon>
+          <h4 mat-line> Home </h4>
       </mat-list-item>
 
-      <mat-list-item class='menu-button'>
-        <mat-icon mat-list-icon>computer</mat-icon>
-        <h4 mat-line> Performance </h4>
+      <mat-list-item class='menu-button' routerLink="/search" (click)="drawer.toggle()">
+          <mat-icon mat-list-icon>search</mat-icon>
+          <h4 mat-line> Search </h4>
       </mat-list-item>
 
-      <mat-list-item class='menu-button'>
-        <mat-icon mat-list-icon>menu_book</mat-icon>
-        <h4 mat-line> All sentences </h4>
+      <mat-list-item class='menu-button' routerLink="/project_description" (click)="drawer.toggle()">
+          <mat-icon mat-list-icon>details</mat-icon>
+          <h4 mat-line> Project Description</h4>
+      </mat-list-item>
+
+      <mat-list-item class='menu-button' routerLink="/performance" (click)="drawer.toggle()">
+          <mat-icon mat-list-icon>computer</mat-icon>
+          <h4 mat-line> Performance </h4>
+      </mat-list-item>
+
+      <mat-list-item class='menu-button' routerLink="/all_sentence" (click)="drawer.toggle()">
+          <mat-icon mat-list-icon>menu_book</mat-icon>
+          <h4 mat-line> All sentences </h4>
       </mat-list-item>
 
     </mat-list>
@@ -28,24 +37,18 @@
     <button mat-icon-button (click)="drawer.toggle()">
       <mat-icon>menu</mat-icon>
     </button>
-    <span>Data Engineering Project</span>
-    <mat-icon>mood</mat-icon>
+    <span class="title" routerLink="/home">Data Engineering Project</span>
+    <mat-icon>thumb_up_alt</mat-icon>
   </mat-toolbar>
+  
     
-  <search-ui></search-ui>
-  <p>&nbsp;</p>
-  <p>&nbsp;</p>
-  <p>&nbsp;</p>
-  <p>&nbsp;</p>
-  <p>&nbsp;</p>
-  <p>&nbsp;</p>
-  <p>&nbsp;</p>
-  <p>&nbsp;</p>
-  <p>&nbsp;</p>
-  <p>&nbsp;</p>
-  <p>&nbsp;</p>
-  <p>&nbsp;</p>
-  <p>&nbsp;</p>
+  <router-outlet></router-outlet>
+  <footer>
+    <p>
+      2019 Sep developed by <a href="https://www.facebook.com/profile.php?id=100000047621325">Ian Tsai</a>. Look source code on
+        <a href="https://github.com/bobosheep/DE_Project_1">Github</a>. 
+    </p>
+  </footer>
   </mat-drawer-content>
   </mat-drawer-container>
 </div>

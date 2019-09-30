@@ -5,6 +5,8 @@ import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CdkTableModule } from '@angular/cdk/table';
 import { CdkTreeModule } from '@angular/cdk/tree';
+import { RouterModule, Routes } from '@angular/router';
+import { APP_BASE_HREF } from '@angular/common';
 import {
   MatAutocompleteModule,
   MatBadgeModule,
@@ -43,10 +45,14 @@ import {
   MatTreeModule,
 } from '@angular/material';
 
-import { AppComponent } from './app.component';
-import { HelloComponent } from './hello.component';
+import { HomeComponent } from './home/home.component';
 import { SearchUiComponent } from './search-ui/search-ui.component';
 import { myHttpService } from './search-ui/search.service';
+import { ProjectDescriptionComponent } from './project-description/project-description.component';
+import { AllSentenceComponent } from './all-sentence/all-sentence.component';
+import { PerformanceComponent } from './performance/performance.component';
+import { AppComponent } from './app.component';
+
 
 @NgModule({
   exports:  [
@@ -91,12 +97,29 @@ import { myHttpService } from './search-ui/search.service';
 })
 export class MyMaterialModule {}
 
+const appRoutes: Routes = [
+  { path: 'home',                            component:  HomeComponent},
+  { path: 'search',                       component:  SearchUiComponent},
+  { path: 'project_description',          component:  ProjectDescriptionComponent},
+  { path: 'performance',                  component:  PerformanceComponent},
+  { path: 'all_sentence',                 component:  AllSentenceComponent},
+  { path: '**',
+    redirectTo: 'home',
+    pathMatch: 'full'
+  }
+];
+
 
 @NgModule({
   imports:      [ BrowserModule, FormsModule, BrowserAnimationsModule, MyMaterialModule ,
-                 MatNativeDateModule, HttpClientModule ],
-  declarations: [ AppComponent, HelloComponent, SearchUiComponent ],
+                 MatNativeDateModule, HttpClientModule,
+                 RouterModule.forRoot(
+                   appRoutes,
+                   { enableTracing: true } // <-- debugging purposes only
+                 ) ],
+  declarations: [ AppComponent, SearchUiComponent, ProjectDescriptionComponent,
+                  AllSentenceComponent, HomeComponent, PerformanceComponent ],
   bootstrap:    [ AppComponent ],
-  providers:    [ myHttpService ]
+  providers:    [ myHttpService, {provide: APP_BASE_HREF, useValue : '/' }]
 })
 export class AppModule { }
