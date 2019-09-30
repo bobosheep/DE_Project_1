@@ -8,15 +8,15 @@
           <mat-icon mat-list-icon>home</mat-icon>
           <h4 mat-line> Home </h4>
       </mat-list-item>
+      
+      <mat-list-item class='menu-button' routerLink="/project_description" (click)="drawer.toggle()">
+          <mat-icon mat-list-icon>details</mat-icon>
+          <h4 mat-line> Project Description</h4>
+      </mat-list-item>
 
       <mat-list-item class='menu-button' routerLink="/search" (click)="drawer.toggle()">
           <mat-icon mat-list-icon>search</mat-icon>
           <h4 mat-line> Search </h4>
-      </mat-list-item>
-
-      <mat-list-item class='menu-button' routerLink="/project_description" (click)="drawer.toggle()">
-          <mat-icon mat-list-icon>details</mat-icon>
-          <h4 mat-line> Project Description</h4>
       </mat-list-item>
 
       <mat-list-item class='menu-button' routerLink="/performance" (click)="drawer.toggle()">
