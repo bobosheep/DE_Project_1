@@ -3,13 +3,15 @@ import json
 import pickle
 import time
 
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, url_for
+from flask import render_template
 app = Flask(__name__)
 sentences = {}
 
+
 @app.route('/')
 def home():
-    return 'Hello world!'
+    return render_template('index.html')
 
 search_term = ''
 result_list = []
